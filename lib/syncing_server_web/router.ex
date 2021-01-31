@@ -22,6 +22,8 @@ defmodule SyncingServerWeb.Router do
     scope "/" do
       pipe_through [:fetch_session, :protect_from_forgery]
       live_dashboard "/dashboard", metrics: SyncingServerWeb.Telemetry, ecto_repos: [SyncingServer.Repo]
+
+      #resources "/users", UserController, except: [:new, :edit]
     end
   end
 end
