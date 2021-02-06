@@ -8,7 +8,8 @@
 use Mix.Config
 
 config :syncing_server,
-  ecto_repos: [SyncingServer.Repo]
+  ecto_repos: [SyncingServer.Repo],
+  default_cost: 11
 
 config :syncing_server, SyncingServer.Accounts.Guardian,
   issuer: "syncing_server",
