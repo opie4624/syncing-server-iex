@@ -5,8 +5,19 @@ defmodule SyncingServerWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", SyncingServerWeb do
+  scope "/", SyncingServerWeb do
     pipe_through :api
+
+    get "/healthcheck", HealthCheckController, :do_it
+
+    scope "/auth", SyncingServerWeb do
+      post "/", AuthController, :register
+      get "/params", AuthController, :params
+      post "/sign_in", AuthController, :sign_in
+      post "/sign_out", AuthController, :sign_out
+      post "/update", AuthController, :update
+      post "/change_pw", AuthController, :change_pw
+    end
   end
 
   # Enables LiveDashboard only for development
@@ -16,14 +27,12 @@ defmodule SyncingServerWeb.Router do
   # If your application does not have an admins-only section yet,
   # you can use Plug.BasicAuth to set up some basic authentication
   # as long as you are also using SSL (which you should anyway).
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+  import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      pipe_through [:fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: SyncingServerWeb.Telemetry, ecto_repos: [SyncingServer.Repo]
+  scope "/admin" do
+    pipe_through [:fetch_session, :protect_from_forgery]
+    live_dashboard "/dashboard", metrics: SyncingServerWeb.Telemetry, ecto_repos: [SyncingServer.Repo]
 
-      #resources "/users", UserController, except: [:new, :edit]
-    end
+    #resources "/users", UserController, except: [:new, :edit]
   end
 end
