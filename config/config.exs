@@ -10,6 +10,10 @@ use Mix.Config
 config :syncing_server,
   ecto_repos: [SyncingServer.Repo]
 
+config :syncing_server, SyncingServer.Accounts.Guardian,
+  issuer: "syncing_server",
+  secret_key: "5WqRR18qLqHqWQeFvdTi7hqTrjWXzZVarYhWBCgMIe+35/QlVM+MgXdS46QPPYGc"
+
 # Configures the endpoint
 config :syncing_server, SyncingServerWeb.Endpoint,
   url: [host: "localhost"],
