@@ -10,7 +10,7 @@ defmodule SyncingServerWeb.Router do
 
     get "/healthcheck", HealthCheckController, :do_it
 
-    scope "/auth", SyncingServerWeb do
+    scope "/auth" do
       post "/", AuthController, :register
       get "/params", AuthController, :params
       post "/sign_in", AuthController, :sign_in

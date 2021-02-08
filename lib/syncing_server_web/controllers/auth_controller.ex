@@ -1,4 +1,4 @@
-defmodule SyncServerWeb.AuthController do
+defmodule SyncingServerWeb.AuthController do
   use SyncingServerWeb, :controller
 
   alias SyncingServer.Accounts
@@ -18,8 +18,36 @@ defmodule SyncServerWeb.AuthController do
     nil
   end
 
-  def register(conn, _params) do
-    nil
+  def register(conn, %{
+        "email" => email,
+        "password" => password,
+        "pw_nonce" => pw_nonce,
+        "version" => version
+      })
+      when version == "003" do
+    {:ok, user} =
+      Accounts.create_user(%{
+        email: email,
+        encrypted_password: password,
+        pw_nonce: pw_nonce,
+        version: version
+      })
+  end
+
+  def register(conn, %{
+        "identifier" => identifier,
+        "password" => password,
+        "version" => version
+      })
+      when version == "004 " do
+    {:ok, user} =
+      Accounts.create_user(
+        {%{
+           email: identifer,
+           encrypted_password: password,
+           version: version
+         }}
+      )
   end
 
   def update(conn, _params) do
