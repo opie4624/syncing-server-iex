@@ -11,7 +11,8 @@ defmodule SyncingServerWeb.UserView do
   end
 
   def render("user.json", %{user: user}) do
-    %{id: user.id,
+    %{
+      id: user.id,
       version: user.version,
       email: user.email,
       pw_nonce: user.pw_nonce,
@@ -25,6 +26,7 @@ defmodule SyncingServerWeb.UserView do
       encrypted_password: user.encrypted_password,
       locked_until: user.locked_until,
       num_failed_attempts: user.num_failed_attempts,
-      updated_with_user_agent: user.updated_with_user_agent}
+      updated_with_user_agent: user.updated_with_user_agent
+    }
   end
 end

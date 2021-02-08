@@ -36,7 +36,22 @@ defmodule SyncingServerWeb.UserControllerTest do
     updated_with_user_agent: "some updated updated_with_user_agent",
     version: "some updated version"
   }
-  @invalid_attrs %{email: nil, encrypted_password: nil, kp_created: nil, kp_origination: nil, locked_until: nil, num_failed_attempts: nil, pw_alg: nil, pw_cost: nil, pw_func: nil, pw_key_size: nil, pw_nonce: nil, pw_salt: nil, updated_with_user_agent: nil, version: nil}
+  @invalid_attrs %{
+    email: nil,
+    encrypted_password: nil,
+    kp_created: nil,
+    kp_origination: nil,
+    locked_until: nil,
+    num_failed_attempts: nil,
+    pw_alg: nil,
+    pw_cost: nil,
+    pw_func: nil,
+    pw_key_size: nil,
+    pw_nonce: nil,
+    pw_salt: nil,
+    updated_with_user_agent: nil,
+    version: nil
+  }
 
   def fixture(:user) do
     {:ok, user} = Accounts.create_user(@create_attrs)

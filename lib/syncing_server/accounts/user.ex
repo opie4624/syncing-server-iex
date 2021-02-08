@@ -24,7 +24,37 @@ defmodule SyncingServer.Accounts.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:version, :email, :pw_nonce, :kp_created, :kp_origination, :pw_cost, :pw_key_size, :pw_salt, :pw_alg, :pw_func, :encrypted_password, :locked_until, :num_failed_attempts, :updated_with_user_agent])
-    |> validate_required([:version, :email, :pw_nonce, :kp_created, :kp_origination, :pw_cost, :pw_key_size, :pw_salt, :pw_alg, :pw_func, :encrypted_password, :locked_until, :num_failed_attempts, :updated_with_user_agent])
+    |> cast(attrs, [
+      :version,
+      :email,
+      :pw_nonce,
+      :kp_created,
+      :kp_origination,
+      :pw_cost,
+      :pw_key_size,
+      :pw_salt,
+      :pw_alg,
+      :pw_func,
+      :encrypted_password,
+      :locked_until,
+      :num_failed_attempts,
+      :updated_with_user_agent
+    ])
+    |> validate_required([
+      :version,
+      :email,
+      :pw_nonce,
+      :kp_created,
+      :kp_origination,
+      :pw_cost,
+      :pw_key_size,
+      :pw_salt,
+      :pw_alg,
+      :pw_func,
+      :encrypted_password,
+      :locked_until,
+      :num_failed_attempts,
+      :updated_with_user_agent
+    ])
   end
 end
