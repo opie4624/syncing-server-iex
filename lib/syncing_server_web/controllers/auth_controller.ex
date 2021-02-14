@@ -43,7 +43,7 @@ defmodule SyncingServerWeb.AuthController do
     {:ok, user} =
       Accounts.create_user(
         {%{
-           email: identifer,
+           email: identifier,
            encrypted_password: password,
            version: version
          }}
