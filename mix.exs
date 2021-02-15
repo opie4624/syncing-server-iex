@@ -48,7 +48,8 @@ defmodule SyncingServer.MixProject do
       {:argon2_elixir, "~> 2.0"},
       {:bcrypt_elixir, "~> 2.3"},
       {:pbkdf2_elixir, "~> 1.3"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:cors_plug, "~> 2.0"}
     ]
   end
 
