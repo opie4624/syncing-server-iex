@@ -43,18 +43,43 @@ defmodule SyncingServer.Accounts.User do
     |> validate_required([
       :version,
       :email,
-      :pw_nonce,
-      :kp_created,
-      :kp_origination,
-      :pw_cost,
-      :pw_key_size,
-      :pw_salt,
-      :pw_alg,
-      :pw_func,
-      :encrypted_password,
-      :locked_until,
-      :num_failed_attempts,
-      :updated_with_user_agent
+      :encrypted_password
     ])
+    |> validate_required_by_version(attrs.version)
   end
+
+  @doc false
+  defp validate_required_by_version(user, "001"),
+    do:
+      validate_required(user, [
+        :email,
+        :pw_alg,
+        :pw_cost,
+        :pw_func,
+        :pw_salt,
+        :pw_key_size
+      ])
+
+  defp validate_required_by_version(user, "002"),
+    do:
+      validate_required(user, [
+        :email,
+        :pw_cost,
+        :pw_salt
+      ])
+
+  defp validate_required_by_version(user, "003"),
+    do:
+      validate_required(user, [
+        :pw_nonce,
+        :pw_cost
+      ])
+
+  defp validate_require_by_version(user, "004"),
+    do:
+      validate_required(user, [
+        :kp_created,
+        :kp_origination,
+        :pw_nonce
+      ])
 end
