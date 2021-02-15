@@ -75,7 +75,7 @@ defmodule SyncingServer.Accounts.User do
         :pw_cost
       ])
 
-  defp validate_require_by_version(user, "004"),
+  defp validate_required_by_version(user, "004"),
     do:
       validate_required(user, [
         :kp_created,
